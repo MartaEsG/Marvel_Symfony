@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+{% for character in characters %}
+<section>
+    <h3>Nombre: {{character.name}}</h3>
+    <p>Planeta: {{character.planet}}</p>
+</section>
+{% endfor %}
+{% endblock %}
+
+{% block aside %}
+<aside> <h2>Publicidad</h2> </aside>
+{% endblock %}
