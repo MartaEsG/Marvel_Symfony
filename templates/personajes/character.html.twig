@@ -3,8 +3,17 @@
 {% block body %}
 <h2>El personaje con id {{id}} </h2>
 <section>
-    <h3>Nombre: {{character.name}}</h3>
+    <h3>{{character.name}}</h3>
     <p>Planeta: {{character.planet}}</p>
+    <p>Superpoder: {{character.superpower}}</p>
+    <p>Descripción: {{character.description}}</p>
+    <p>Fecha de nacimiento: {{character.BirthDate|date("Y-m-d")}}</p>
+    <ul>Debilidades:
+        {% for weakness in character.weaknesses %}
+        <li>{{weakness.name}}</li>
+            
+        {% endfor %}
+    </ul>
 </section>
 {% endblock %}
 {% block footer %}

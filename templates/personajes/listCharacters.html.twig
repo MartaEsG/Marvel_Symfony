@@ -5,6 +5,13 @@
 <section>
     <h3>Nombre: {{character.name}}</h3>
     <p>Planeta: {{character.planet}}</p>
+    <p>Superpoder: {{character.superpower}}</p>
+    <p>Descripción: {{character.description}}</p>
+    {% if character.BirthDate %}
+    <p>Fecha de nacimiento: {{character.BirthDate|date("Y-m-d")}}</p>
+    {% endif %}
+    <a href="{{path('detailcharacter', {'id': character.id})}}">Más informacion</a>
+
 </section>
 {% endfor %}
 {% endblock %}
