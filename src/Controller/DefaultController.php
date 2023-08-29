@@ -5,17 +5,19 @@ namespace App\Controller;
 use App\Entity\Characters;
 use App\Entity\Weakness;
 use App\Form\CharacterFormType;
+use App\Form\UserFormType;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController {
 
-    #[Route("/characters", methods:["GET"])]
+    #[Route("/characters", name:"characters", methods:["GET"])]
     public function getCharacters (EntityManagerInterface $doctrine){
 
         $repository = $doctrine->getRepository(Characters::class);
@@ -127,5 +129,8 @@ class DefaultController extends AbstractController {
 
         return $this->render("personajes/createCharacter.html.twig", ["formCharacter"=>$form]);
     }
+
+    
+
 
 }
