@@ -19,7 +19,7 @@ class UserFormType extends AbstractType
             // ->add('roles')
             ->add('password', PasswordType::class)
             ->add('name')
-            ->add ('registrate', SubmitType::class)
+            ->add ('registrate', SubmitType::class, ["attr"=>["class"=>"btn btn-primary"]])
         ;
     }
 

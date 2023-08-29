@@ -10,7 +10,10 @@
     {% if character.BirthDate %}
     <p>Fecha de nacimiento: {{character.BirthDate|date("Y-m-d")}}</p>
     {% endif %}
+    {% if is_granted("ROLE_ADMIN") %}
     <a href="{{path('detailcharacter', {'id': character.id})}}">Más informacion</a>
+    <a href="{{path('edit', {'id': character.id})}}">Editar</a>
+    {% endif %}
 
 </section>
 {% endfor %}

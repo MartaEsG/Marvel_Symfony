@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class DefaultController extends AbstractController {
 
@@ -29,6 +30,7 @@ class DefaultController extends AbstractController {
     }
 
     #[Route("/character/{id}", name:"detailcharacter", methods:["GET"])]
+    #[IsGranted('ROLE_ADMIN')]
     public function getCharacter ($id, EntityManagerInterface $doctrine){
         
         $repository = $doctrine->getRepository(Characters::class);
@@ -38,7 +40,7 @@ class DefaultController extends AbstractController {
         return $this -> render ("personajes/character.html.twig", ["id"=> $id, "character"=>$character]);
     }
 
-    #[Route("/character/{id}", methods:["PUT"])]
+    #[Route("/character/{id}", name:"edit", methods:["PUT"])]
     public function edit(Characters $character, $id, EntityManagerInterface $doctrine){
 
         $repository = $doctrine->getRepository(Characters::class);
@@ -65,6 +67,7 @@ class DefaultController extends AbstractController {
     }
 
     #[Route("/character/{id}", methods:["DELETE"])]
+    
     public function delete($id, EntityManagerInterface $doctrine){
 
         $repository = $doctrine->getRepository(Characters::class);
